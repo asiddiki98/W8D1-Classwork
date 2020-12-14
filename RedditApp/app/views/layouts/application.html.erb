@@ -10,24 +10,20 @@
   </head>
 
   <body>
-
     <% if logged_in? %>
-      <form action=" session_url " method="post">
+      <form action=<%=session_url%> method="post">
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         <button>Log out</button>
       </form>
-    <% else %>
-      <a href="<%= session_url %>">Sign In</a>
+      <% else %>
+      <a href="<%= new_session_url %>">Sign In</a>
       <br>
-      <a href="<%= users_url %>">Sign Up</a>
+      <a href="<%= new_user_url %>">Sign Up</a>
     <% end%>
-
-
     <% if flash[:errors] %>
       <%= flash[:errors].join(", ") %>
     <% end%>
-
     <%= yield %>
   </body>
 </html>
